@@ -8,7 +8,6 @@ The GNU General Public License, Version 3, 29 June 2007 (GPLv3)
 Everyone is permitted to copy and distribute verbatim copies of this license
 document, but changing it is not allowed.
 
-
 Preamble
 --------
 
