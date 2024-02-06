@@ -1,4 +1,6 @@
 // Copyright 2024 Sota Takahashi (@Sahu)
+// PKM39 stands for
+// Planck Keyboard Minimized for Personal Knowledge Management 39 keys
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #pragma once
