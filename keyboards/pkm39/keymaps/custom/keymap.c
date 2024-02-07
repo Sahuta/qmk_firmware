@@ -6,11 +6,12 @@
 enum custom_keycodes {
     QWERTY = SAFE_RANGE,
     KANA_LAYER,
-    // EISUU_LAYER,
+    EISUU_LAYER,
     // VIM_ESC,
 };
 
 bool is_kana_key_active = false;
+bool is_eisuu_key_active = false;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
@@ -35,6 +36,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 is_kana_key_active = false;
             }
             break;
+        case EISUU_LAYER:
+            if (record->event.pressed) {
+                if (record->tap.count > 0) {
+                    if (!is_eisuu_key_active) {
+                        register_code(KC_LNG2);
+                        is_eisuu_key_active = true;
+                    }
+                } else {
+                    register_code(KC_LNG2);
+                    layer_on(2); 
+                    is_eisuu_key_active = true;
+                }
+            } else {
+                unregister_code(KC_LNG2);
+                layer_off(2);
+                is_eisuu_key_active = false;
+            }
+            break;
     }
     return true;
 }
@@ -54,7 +73,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
         KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    LT(3, KC_ENT),
         KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM,    KC_DOT,    KC_LEFT_BRACKET,
-        KC_ESC,    KC_LALT,    LCTL_T(KC_BSPC),    LT(2, KC_LNG2),    LSFT_T(KC_SPACE),  KANA_LAYER,     LGUI_T(KC_DEL), QK_BOOT,  KC_RIGHT_BRACKET
+        KC_ESC,    KC_LALT,    LCTL_T(KC_BSPC),   EISUU_LAYER,    LSFT_T(KC_SPACE),  KANA_LAYER,     LGUI_T(KC_DEL), QK_BOOT,  KC_RIGHT_BRACKET
     ),
     [1] = LAYOUT_ortho_4x10(
         LSFT(KC_1),    LSFT(KC_2),    LSFT(KC_3),    LSFT(KC_4),    LSFT(KC_5),    LSFT(KC_6),    LSFT(KC_7),    LSFT(KC_8),    LSFT(KC_9),    LSFT(KC_0),
