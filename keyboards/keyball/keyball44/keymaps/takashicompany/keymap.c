@@ -31,6 +31,8 @@ enum custom_keycodes {
     KC_TO_CLICKABLE_DEC,
     KC_SCROLL_DIR_V,
     KC_SCROLL_DIR_H,
+    EISUU,
+    KANA,
 };
 
 
@@ -127,9 +129,27 @@ bool is_clickable_mode(void) {
     return state == CLICKABLE || state == CLICKING || state == SCROLLING;
 }
 
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     
     switch (keycode) {
+        case KANA:
+            if(record->event.pressed) {
+                layer_on(2);
+                tap_code(KC_LANGUAGE_1);
+            } else {
+                layer_move(0);
+            }
+        return false;
+        case EISUU:
+            if (record->event.pressed) {
+                layer_on(1);
+                tap_code(KC_LANGUAGE_2);
+            } else {
+                layer_move(0);
+            }
+        return false;
+
         case KC_MY_BTN1:
         case KC_MY_BTN2:
         case KC_MY_BTN3:
@@ -164,7 +184,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             } else {
                 enable_click_layer();   // スクロールキーを離した時に再度クリックレイヤーを有効にする。 Enable click layer again when the scroll key is released.
             }
-         return false;
+        return false;
         
         case KC_TO_CLICKABLE_INC:
             if (record->event.pressed) {
@@ -190,7 +210,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 eeconfig_update_user(user_config.raw);
             }
             return false;
-        
         case KC_SCROLL_DIR_V:
             if (record->event.pressed) {
                 user_config.mouse_scroll_v_reverse = !user_config.mouse_scroll_v_reverse;
@@ -205,7 +224,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
 
-         default:
+        default:
             if  (record->event.pressed) {
                 
                 if (state == CLICKING || state == SCROLLING)
@@ -226,7 +245,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
         
     }
-   
     return true;
 }
 
@@ -331,7 +349,7 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
                 }
                 break;
 
-             case WAITING:
+            case WAITING:
                 if (timer_elapsed(click_timer) > 50) {
                     mouse_movement = 0;
                     state = NONE;
@@ -379,7 +397,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ESC, LT(4, KC_Q), KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BSPC,
         KC_LCTL, KC_A, KC_S, LT(3, KC_D), KC_F, KC_G, KC_H, KC_J, LT(3, KC_K), KC_L, KC_ENT, KC_ENT,
         KC_LSFT, LSFT_T(KC_Z), LGUI_T(KC_X), KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, LCTL_T(KC_DOT), KC_BSPC, KC_BSPC, 
-        KC_LSFT, KC_LCTL, KC_LGUI, LALT_T(KC_LNG2), LSFT_T(KC_TAB), LT(2, KC_SPC), LT(1, KC_LNG1), LT(1, KC_LNG1), KC_RGUI, KC_RCTL
+        KC_LSFT, KC_LCTL, KANA, EISUU, LSFT_T(KC_TAB), LT(2, KC_SPC), LT(1, KC_LNG1), KC_RCTL, KC_RGUI, LALT_T(KC_LNG2)
     ),
     
     LAYOUT_universal(
