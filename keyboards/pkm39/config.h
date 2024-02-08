@@ -5,6 +5,8 @@
 
 #pragma once
 #define TAPPING_TERM 150
+#define PERMISSIVE_HOLD
+#define RETRO_TAPPING
 
 /*
  * Feature disable options

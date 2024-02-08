@@ -9,9 +9,11 @@ enum {
     EISUU_SYMBOLS,
     FUNCTION
 };
+
 enum custom_keycodes {
     EISUU = SAFE_RANGE,
-    KANA
+    KANA,
+    VIM_ESC,
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -23,20 +25,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             } else {
                 layer_move(QWERTY);
             }
-        return false;
-        break;
+            return false;
         case EISUU:
             if (record->event.pressed) {
                 layer_on(EISUU_SYMBOLS);
-                tap_code(KC_LANGUAGE_2);
+                tap_code(KC_LNG2);
             } else {
                 layer_move(QWERTY);
             }
-        return false;
-        break;
+            return false;
+        case VIM_ESC:
+            if (record->event.pressed) {
+                SEND_STRING(SS_TAP(X_ESC)SS_TAP(X_LNG2));
+            }else{
+            }
+            return false;
     }
     return true;
-};
+}
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /*
@@ -54,7 +60,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
         KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    LT(FUNCTION, KC_ENT),
         KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM,    KC_DOT,   KC_RIGHT_BRACKET,
-        KC_ESC,    KC_LALT,    LCTL_T(KC_BSPC),   EISUU,    LSFT_T(KC_SPACE),  KANA,   LGUI_T(KC_DEL), QK_BOOT,  KC_RIGHT_BRACKET
+        VIM_ESC,    KC_LALT,    LCTL_T(KC_BSPC),   EISUU,    LSFT_T(KC_SPACE),  KANA,   LGUI_T(KC_DEL), QK_BOOT,  KC_RIGHT_BRACKET
     ),
     [KANA_SYMBOLS] = LAYOUT_ortho_4x10(
         LSFT(KC_1),    LSFT(KC_2),    LSFT(KC_3),    LSFT(KC_4),    LSFT(KC_5),    LSFT(KC_6),    LSFT(KC_7),    LSFT(KC_8),    LSFT(KC_9),    LSFT(KC_0),
