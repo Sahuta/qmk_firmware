@@ -4,7 +4,7 @@
 
 ## pkm39は日本語文書におけるマークアップ言語/数式の入力を快適にするために生まれた、39キーのポータブルキーボードです。
 
-* Keyboard Maintainer: [Sota Takahashi](https://github.com/Sahu)
+* Keyboard Maintainer: [lil Pusher](https://github.com/Sahu)
 * Hardware Supported: *RP2040(On-board)*
 * Hardware Availability: *TBA(will be in 2024)*
 
