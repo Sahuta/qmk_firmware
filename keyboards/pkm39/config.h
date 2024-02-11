@@ -7,6 +7,7 @@
 #define TAPPING_TERM 150
 #define PERMISSIVE_HOLD
 #define RETRO_TAPPING
+#define DYNAMIC_KEYMAP_LAYER_COUNT 7
 
 /*
  * Feature disable options
