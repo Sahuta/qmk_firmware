@@ -1,6 +1,6 @@
 # pkm39
 
-![*Planck-like Keyboard, Minimized for Personal Knowledge Management*.](https://drive.google.com/file/d/13AKagkwNQXJ2uApEdrbhkhYmE6Gk3AkK)
+![*Planck-like Keyboard, Minimized for Personal Knowledge Management*.](pkm39.JPEG)
 
 ## pkm39は日本語文書におけるマークアップ言語/数式の入力を快適にするために生まれた、39キーのポータブルキーボードです。
 
