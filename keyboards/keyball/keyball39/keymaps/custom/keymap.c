@@ -36,6 +36,12 @@ enum custom_keycodes {
     EISUU,
     KANA,
     VIM_ESC,
+    INLINE,
+    BLOCK,
+    GATHER,
+    FRAC,
+    SQRT,
+    LR
 };
 
 
@@ -158,6 +164,47 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }else{
             }
             return false;
+        case INLINE:
+            if (record->event.pressed) {
+                SEND_STRING(SS_TAP(X_LANGUAGE_2)"$$"SS_TAP(X_LEFT));
+            } else {
+            }
+            return false;
+            break;
+        case BLOCK:
+            if (record->event.pressed) {
+                SEND_STRING(SS_TAP(X_LANGUAGE_2)"$$"SS_TAP(X_ENT)"\\begin{aligned}"SS_TAP(X_ENT)SS_TAP(X_ENT)"\\end{aligned}"SS_TAP(X_ENT)"$$"SS_TAP(X_UP)SS_TAP(X_UP));
+            } else {
+            }
+            return false;
+            break;
+        case GATHER:
+            if (record->event.pressed) {
+                SEND_STRING(SS_TAP(X_LANGUAGE_2)"$$"SS_TAP(X_ENT)"\\begin{gather}"SS_TAP(X_ENT)SS_TAP(X_ENT)"\\end{gather}"SS_TAP(X_ENT)"$$"SS_TAP(X_UP)SS_TAP(X_UP));
+            } else {
+            }
+            return false;
+            break;
+        case FRAC:
+            if (record->event.pressed) {
+                SEND_STRING(SS_TAP(X_LANGUAGE_2)"\\frac{}{}"SS_TAP(X_LEFT)SS_TAP(X_LEFT)SS_TAP(X_LEFT));
+            } else {
+            }
+            return false;
+        case SQRT:
+            if (record->event.pressed) {
+                SEND_STRING(SS_TAP(X_LANGUAGE_2)"\\sqrt{}"SS_TAP(X_LEFT));
+            } else {
+            }
+            return false;
+            break;
+        case LR:
+            if (record->event.pressed) {
+                SEND_STRING(SS_TAP(X_LANGUAGE_2)"\\left\\right"SS_TAP(X_LEFT)SS_TAP(X_LEFT)SS_TAP(X_LEFT)SS_TAP(X_LEFT)SS_TAP(X_LEFT)SS_TAP(X_LEFT));
+            } else {
+            }
+            return false;
+            break;
         case KC_MY_BTN1:
         case KC_MY_BTN2:
         case KC_MY_BTN3:
@@ -396,38 +443,38 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
         KC_BACKSLASH,    LSFT(KC_LEFT_BRACKET),    LSFT(KC_RIGHT_BRACKET),    LSFT(KC_6),  LSFT(KC_4),    LSFT(KC_3),    KC_MINUS,    KC_QUOTE,    KC_SEMICOLON,    KC_SLASH,
         LSFT(KC_1),    LSFT(KC_COMM),    LSFT(KC_DOT),   KC_EQUAL,    KC_GRAVE,    LSFT(KC_EQUAL),  LSFT(KC_MINUS),  KC_COMM,    KC_DOT,    LSFT(KC_SLASH),
-        KC_TRNS, KC_TRNS, KC_TRNS, MO(6), KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, MO(5)
+        MO(5), KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, MO(4), KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
   ),
   LAYOUT_universal(
         KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
         KC_BACKSLASH,    LSFT(KC_LEFT_BRACKET),    LSFT(KC_RIGHT_BRACKET),    LSFT(KC_6),  LSFT(KC_4),    LSFT(KC_3),    KC_MINUS,    KC_QUOTE,    KC_SEMICOLON,    KC_SLASH,
         LSFT(KC_1),    LSFT(KC_COMM),    LSFT(KC_DOT),   KC_EQUAL,    KC_GRAVE,    LSFT(KC_EQUAL),    LSFT(KC_MINUS),    KC_COMM,    KC_DOT,    LSFT(KC_SLASH),
-        MO(5), KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  MO(6), KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, MO(4), KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, MO(5)
   ),
   LAYOUT_universal(
         KC_F11,    KC_F12,    KC_F13,    KC_F14,    KC_F15,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,
         KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,    KC_LEFT,    KC_DOWN,    KC_UP,    KC_RIGHT,    KC_ENT,
         KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_PRINT_SCREEN,    RCS(KC_P),    LGUI(KC_TAB),    KC_TAB,    KC_0,
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, RALT(KC_LEFT), RALT(KC_RIGHT), KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
   ),
   LAYOUT_universal(
-    RGB_TOG  , _______  , _______  , _______  ,  _______  ,                           RGB_M_P  , RGB_M_B  , RGB_M_R  , RGB_M_SW , RGB_M_SN ,
-    RGB_MOD  , RGB_HUI  , RGB_SAI  , RGB_VAI  ,  SCRL_DVI ,                           RGB_M_K  , RGB_M_X  , RGB_M_G  , RGB_M_T  , RGB_M_TW ,
-    RGB_RMOD , RGB_HUD  , RGB_SAD  , RGB_VAD  ,  SCRL_DVD ,                           CPI_D1K  , CPI_D100 , CPI_I100 , CPI_I1K  , KBC_SAVE ,
-    QK_BOOT    , KBC_RST  , _______  , _______  ,  _______  , _______  ,     _______  , _______  , _______  , _______  , KBC_RST  , QK_BOOT
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    SQRT, FRAC, GATHER, INLINE, BLOCK, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS, LR, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    _______  , _______  , _______  , _______  ,  _______  , _______  ,     _______  , _______  , _______  , _______  , _______ , _______
   ),
   LAYOUT_universal(
-    RGB_TOG  , _______  , _______  , _______  ,  _______  ,                           RGB_M_P  , RGB_M_B  , RGB_M_R  , RGB_M_SW , RGB_M_SN ,
-    RGB_MOD  , RGB_HUI  , RGB_SAI  , RGB_VAI  ,  SCRL_DVI ,                           RGB_M_K  , RGB_M_X  , RGB_M_G  , RGB_M_T  , RGB_M_TW ,
-    RGB_RMOD , RGB_HUD  , RGB_SAD  , RGB_VAD  ,  SCRL_DVD ,                           CPI_D1K  , CPI_D100 , CPI_I100 , CPI_I1K  , KBC_SAVE ,
-    QK_BOOT    , KBC_RST  , _______  , _______  ,  _______  , _______  ,     _______  , _______  , _______  , _______  , KBC_RST  , QK_BOOT
+    _______  , _______  , _______  , _______  ,  _______  ,                           _______  , _______  , _______  , _______ , _______ ,
+    _______  , _______  , _______  , _______  ,  _______  ,                           _______  , _______  , _______  , _______ , _______ ,
+    _______  , _______  , _______  , _______  ,  _______  ,                           _______  , _______  , _______  , _______ , _______ ,
+    _______  , _______  , _______  , _______  ,  _______  , _______  ,     _______  , _______  , _______  , _______  , _______ , _______
   ),
   LAYOUT_universal(
-    RGB_TOG  , _______  , _______  , _______  ,  _______  ,                           RGB_M_P  , RGB_M_B  , RGB_M_R  , RGB_M_SW , RGB_M_SN ,
-    RGB_MOD  , RGB_HUI  , RGB_SAI  , RGB_VAI  ,  SCRL_DVI ,                           RGB_M_K  , RGB_M_X  , RGB_M_G  , RGB_M_T  , RGB_M_TW ,
-    RGB_RMOD , RGB_HUD  , RGB_SAD  , RGB_VAD  ,  SCRL_DVD ,                           CPI_D1K  , CPI_D100 , KC_BTN1,  KC_BTN2   , KBC_SAVE ,
-    QK_BOOT    , KBC_RST  , _______  , _______  ,  _______  , _______  ,     _______  , _______  , _______  , _______  , KBC_RST  , QK_BOOT
-  )
+    _______  , _______  , _______  , _______  ,  _______  ,                           _______  , _______  , _______  , _______ , _______ ,
+    _______  , _______  , _______  , _______  ,  _______  ,                           _______  , KC_MY_SCR, _______  , _______ , _______ ,
+    _______  , _______  , _______  , _______  ,  _______  ,                           _______  , _______  , _______  , _______ , _______ ,
+    _______  , _______  , _______  , _______  ,  _______  , _______  ,     _______  , _______  , _______  , _______  , _______ , _______
+  ),
 };
 // clang-format on
 
