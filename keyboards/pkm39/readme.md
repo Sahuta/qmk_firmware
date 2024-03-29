@@ -36,39 +36,39 @@ See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_to
 
 |Name on `keymap.c` | Name on VIA/Remap | Description |
 |:-----------------:|:-----------------:|:------------:|
-EISUU   | User 1 | `Tap`: IME OFF(Send `Lang 2`)/Hold:  IME OFF and momentary activate  `Layer 2`|
-KANA    | User 2 | `Tap`: IME ON(Send `Lang 1`)/Hold:  IME ON and momentary activate  `Layer 1` |
-VIM_ESC | User 3 | IME OFF and send `ESC`|
-ALPHA   | User 4 | input string `\alpha` |
-BETA    | User 5 | input string `\beta` |
-GAMMA   | User 6 | input string `\gamma` |
-DELTA   | User 7 | input string `\delta` |
-EPSILON | User 8 | input string `\epsilon` |
-ZETA    | User 9 | input string `\zeta` |
-ETA     | User 10 | input string `\eta` |
-THETA   | User 11 | input string `\theta` |
-IOTA    | User 12 | input string `\iota` |
-KAPPA   | User 13 | input string `\kappa` |
-LAMBDA  | User 14 | input string `\lambda` |
-MU      | User 15 | input string `\mu` |
-NU      | User 16 | input string `\nu` |
-XI      | User 17 | input string `\xi` |
-OMICRON | User 18 | input string `\omicron` |
-PI      | User 19 | input string `\pi` |
-HO      | User 20 | input string `\rho` |
-SIGMA   | User 21 | input string `\sigma` |
-TAU     | User 22 | input string `\tau` |
-UPSILON | User 23 | input string `\upsilon` |
-PHI     | User 24 | input string `\phi` |
-CHI     | User 25 | input string `\chi` |
-PSI     | User 26 | input string `\psi` |
-OMEGA   | User 27 | input string `\omega` |
-INLINE   | User 28 | input string `$$` and move cursor to the center|
-BLOCK   | User 29 | begin `aligned` environment and set cursor to the center |
-GATHER   | User 30 | begin `gather` environment and set cursor to the center |
-FRAC   | User 31 | input string `\frac{}{}` and move cursor to the first brace|
-SQRT   | User 32 | input string `\sqrt{}` and move cursor to inside of the brace|
-LR   | User 33 | input string `\left\right` and move cursor between them|
+|EISUU   | User 1 | `Tap`: IME OFF(Send `Lang 2`)/Hold:  IME OFF and momentary activate  `Layer 2`|
+|KANA    | User 2 | `Tap`: IME ON(Send `Lang 1`)/Hold:  IME ON and momentary activate  `Layer 1` |
+|VIM_ESC | User 3 | IME OFF and send `ESC`|
+|ALPHA   | User 4 | input string `\alpha` |
+|BETA    | User 5 | input string `\beta` |
+|GAMMA   | User 6 | input string `\gamma` |
+|DELTA   | User 7 | input string `\delta` |
+|EPSILON | User 8 | input string `\epsilon` |
+|ZETA    | User 9 | input string `\zeta` |
+|ETA     | User 10 | input string `\eta` |
+|THETA   | User 11 | input string `\theta` |
+|IOTA    | User 12 | input string `\iota` |
+|KAPPA   | User 13 | input string `\kappa` |
+|LAMBDA  | User 14 | input string `\lambda` |
+|MU      | User 15 | input string `\mu` |
+|NU      | User 16 | input string `\nu` |
+|XI      | User 17 | input string `\xi` |
+|OMICRON | User 18 | input string `\omicron` |
+|PI      | User 19 | input string `\pi` |
+|HO      | User 20 | input string `\rho` |
+|SIGMA   | User 21 | input string `\sigma` |
+|TAU     | User 22 | input string `\tau` |
+|UPSILON | User 23 | input string `\upsilon` |
+|PHI     | User 24 | input string `\phi` |
+|CHI     | User 25 | input string `\chi` |
+|PSI     | User 26 | input string `\psi` |
+|OMEGA   | User 27 | input string `\omega` |
+|INLINE   | User 28 | input string `$$` and move cursor to the center|
+|BLOCK   | User 29 | begin `aligned` environment and set cursor to the center |
+|GATHER   | User 30 | begin `gather` environment and set cursor to the center |
+|FRAC   | User 31 | input string `\frac{}{}` and move cursor to the first brace|
+|SQRT   | User 32 | input string `\sqrt{}` and move cursor to inside of the brace|
+|LR   | User 33 | input string `\left\right` and move cursor between them|
 
 
 ## Bootloader
