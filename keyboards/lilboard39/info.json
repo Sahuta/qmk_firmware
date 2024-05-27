@@ -1,6 +1,6 @@
 {
     "manufacturer": "Sota Takahashi",
-    "keyboard_name": "pkm39",
+    "keyboard_name": "lilboard39",
     "maintainer": "Sahu",
     "bootloader": "rp2040",
     "diode_direction": "COL2ROW",
