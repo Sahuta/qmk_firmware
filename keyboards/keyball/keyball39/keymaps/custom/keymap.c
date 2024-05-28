@@ -1,4 +1,4 @@
-
+/*
 Copyright 2022 @Yowkees
 Copyright 2022 MURAOKA Taro (aka KoRoN, @kaoriya)
 
@@ -31,7 +31,7 @@ enum custom_keycodes {
     FRAC,
     SQRT,
     LR,
-    PRC_SW
+    PRC_SW,
 };
 
 
@@ -117,8 +117,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
         KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    LT(3, KC_ENT),
         KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMMA,    KC_DOT,   KC_LEFT_BRACKET,
-        VIM_ESC,    KC_LALT,  LGUI_T(KC_DEL),  LCTL_T(KC_BSPC),   EISUU,  LSFT_T(KC_SPACE), LSFT_T(KC_SPACE), KANA,   LSFT_T(KC_SPACE),  
-        LSFT_T(KC_SPACE),   LSFT_T(KC_SPACE),   KC_RIGHT_BRACKET
+        VIM_ESC,    KC_LALT,  LGUI_T(KC_DEL),  LCTL_T(KC_BSPC),   EISUU,  LSFT_T(KC_SPACE), LSFT_T(KC_SPACE), KANA,   LSFT_T(KC_SPACE),  LSFT_T(KC_SPACE),   LSFT_T(KC_SPACE),   KC_RIGHT_BRACKET
 ),
   [1] = LAYOUT_universal(
         KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
@@ -152,26 +151,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [6] = LAYOUT_universal(
     _______  , _______  , _______  , _______  ,  _______  ,                           _______  , _______  , _______  , _______ , _______ ,
-    _______  , _______  , _______  , _______  ,  _______  ,                           _______  , KC_BTN1  , _______  , KC_BTN2 , PRC_SW ,
+    _______  , _______  , _______  , _______  ,  _______  ,                           _______  , KC_BTN1  , _______  , KC_BTN2 , ,
     _______  , _______  , _______  , _______  ,  _______  ,                           _______  , _______  , _______  , _______ , _______ ,
-    _______  , _______  , _______  , _______  ,  _______  , _______  ,     _______  , _______  , _______  , _______  , _______ , _______
+    _______, _______  , _______  , PRC_SW ,  _______  , _______  ,     _______  , _______  , _______  , _______  , _______ , _______
   ),
 };
-// clang-format on
-
-layer_state_t layer_state_set_user(layer_state_t state) {
-    // Auto enable scroll mode when the highest layer is 3
-    keyball_set_scroll_mode(get_highest_layer(state) == 3);
-    return state;
-}
-
-#ifdef OLED_ENABLE
-
-#    include "lib/oledkit/oledkit.h"
-
-void oledkit_render_info_user(void) {
-    keyball_oled_render_keyinfo();
-    keyball_oled_render_ballinfo();
-    keyball_oled_render_layerinfo();
-}
-#endif
