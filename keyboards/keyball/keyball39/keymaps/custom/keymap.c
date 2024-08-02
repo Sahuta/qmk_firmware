@@ -22,7 +22,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "precision.c"
 
 enum custom_keycodes {
-    EISUU = SAFE_RANGE,
+    EISUU_LINUX = SAFE_RANGE,
+    KANA_LINUX,
+    VIM_ESC_LINUX,
+    EISUU,
     KANA,
     VIM_ESC,
     INLINE,
@@ -39,6 +42,28 @@ enum custom_keycodes {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     
     switch (keycode) {
+        case KANA_LINUX:
+            if(record->event.pressed) {
+                layer_on(2);
+                tap_code(KC_INT6);
+            } else {
+                layer_off(2);
+            }
+        return false;
+        case EISUU_LINUX:
+            if (record->event.pressed) {
+                layer_on(1);
+                tap_code(KC_INT5);
+            } else {
+                layer_off(1);
+            }
+        return false;
+        case VIM_ESC_LINUX:
+            if (record->event.pressed) {
+                SEND_STRING(SS_TAP(X_ESC)SS_TAP(X_INT5));
+            }else{
+            }
+            return false;
         case KANA:
             if(record->event.pressed) {
                 layer_on(2);
